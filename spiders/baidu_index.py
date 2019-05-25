@@ -3,33 +3,50 @@ import time
 import requests
 import json
 
-from public_method import decrypt_baidu_index_response
+from public_method import *
 
-url = 'https://index.baidu.com/Interface/Newwordgraph/getIndex?region=0&startdate=20190518&enddate=20190524&wordlist[0]=华为'
-headers = {
-    'Accept': 'application/json, text/plain, */*',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Accept-Language': 'zh-CN,zh;q=0.9',
-    'Connection': 'keep-alive',
-    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    'Cookie': 'BDUSS=dqQkJuSVF-bEJWNU1pUGs3Y1B5Mm5ONGt2SHc5M3BqcFA5elFmN1lETFdZaEJkSUFBQUFBJCQAAAAAAAAAAAEAAAD2DidIuu693ExGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANbV6FzW1ehcSz',
-    'Host': 'index.baidu.com',
-    'Referer': 'https://index.baidu.com/baidu-index-mobile/index.html?',
-    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
-    'X-Requested-With': 'XMLHttpRequest',
-}
-response = requests.get(url, headers=headers)
-time.sleep(1)
-print(response.text)
-res_dict = json.loads(response.text)
-data = res_dict['data']
-print(data)
-uniqid = res_dict['uniqid']
-uniqid_url = 'https://index.baidu.com/Interface/api/ptbk?uniqid={}'.format(uniqid)
-response = requests.get(uniqid_url, headers=headers)
-print(response.text)
-key_data = json.loads(response.text)['data']
-_all = data[0]['index'][0]['_all']
-decrypt_data = decrypt_baidu_index_response(key_data, _all)
-print(_all, decrypt_data)
-'ZDW3BFux.t8iRl%58%.32,741+096-'
+# 日期格式：2019-02-24， area:默认全国（0）
+data_url = 'http://index.baidu.com/api/SearchApi/index?area=0&word={keyword}&startDate={startdate}&endDate={enddate}'
+
+def run(params):
+    url = data_url.format(**params)
+    # BDUSS替换成自己登陆后的值
+    headers = dict(dict(
+        Cookie='BDUSS=',
+        Host='index.baidu.com',
+        Referer='http://index.baidu.com/v2/main/index.html',
+    ))
+    response = requests.get(url, headers=headers)
+    if 'not login' in response.text:
+        print('----未登录, response:{}'.format(response.text))
+        return
+    elif 'bad request' in response.text:
+        print('----请示失败，可能关键词{}未被收录'.format(params.get('keyword')))
+        return
+    data = loads_data(response, key='data')
+
+    # 获取解密的key
+    time.sleep(1)
+    uniqid = data['uniqid']
+    uniqid_url = 'https://index.baidu.com/Interface/api/ptbk?uniqid={}'.format(uniqid)
+    response = requests.get(uniqid_url, headers=headers)
+    key_data = loads_data(response, 'data')
+
+    # 解密数据
+    userIndexes = data['userIndexes']
+    for userIndexe in userIndexes:
+        print(userIndexe)
+        for key, val in userIndexe.items():
+            if isinstance(val, dict):
+                decrypt_data = decrypt_baidu_index_response(key_data, val['data'])
+                userIndexe[key]['data'] = decrypt_data
+        print(userIndexe)
+
+if __name__ == '__main__':
+    params = {
+        'startdate': '20190424',
+        'enddate': '20190524',
+        'keyword': '华为',
+    }
+    run(params)
+

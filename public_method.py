@@ -1,4 +1,24 @@
+import json
 import random
+from settings import *
+
+def loads_data(response, key=''):
+    if key:
+        return json.loads(response.text)[key]
+    else:
+        return json.loads(response.text)
+
+def get_headers(type='web'):
+    headers = {
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'zh-CN,zh;q=0.9',
+        'Connection': 'keep-alive',
+        'User-Agent': random.choice(APP_USER_AGENT)
+    }
+    if type == 'web':
+        headers['User-Agent'] = random.choice(BROWSER_USER_AGENT)
+    return headers
 
 
 def decrypt_baidu_index_response(key_data, encrypt_data):
@@ -6,15 +26,12 @@ def decrypt_baidu_index_response(key_data, encrypt_data):
     keys = []
     for key in key_data:
         keys.append(key)
-    print(keys)
     w_data = {}
     for index in range(len(keys)//2):
         w_data[keys[index]] = keys[len(keys)//2 + index]
-    print(w_data)
     encrypt_data_list = []
     for encrypt_d in encrypt_data:
         encrypt_data_list.append(encrypt_d)
-    print(encrypt_data_list)
     data_list = []
     for i in range(len(encrypt_data_list)):
         data_list.append(w_data[encrypt_data_list[i]])
