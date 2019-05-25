@@ -21,21 +21,16 @@ def get_headers(type='web'):
     return headers
 
 
-def decrypt_baidu_index_response(key_data, encrypt_data):
+def decrypt_baidu_index_response(keys, encrypt_data):
     """百度指数返回结果解密"""
-    keys = []
-    for key in key_data:
-        keys.append(key)
     w_data = {}
     for index in range(len(keys)//2):
         w_data[keys[index]] = keys[len(keys)//2 + index]
-    encrypt_data_list = []
-    for encrypt_d in encrypt_data:
-        encrypt_data_list.append(encrypt_d)
-    data_list = []
-    for i in range(len(encrypt_data_list)):
-        data_list.append(w_data[encrypt_data_list[i]])
-    return ''.join(data_list)
+
+    decrypt_data = ''
+    for i in range(len(encrypt_data)):
+        decrypt_data += w_data[encrypt_data[i]]
+    return decrypt_data
 
 
 def get_sougou_weixin_detail_url(url):
