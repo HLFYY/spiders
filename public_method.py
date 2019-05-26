@@ -1,6 +1,6 @@
 import json
 import random
-from settings import *
+from env import *
 
 def loads_data(response, key=''):
     if key:

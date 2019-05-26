@@ -1,5 +1,6 @@
 import time
 
+import redis
 import requests
 import json
 
@@ -9,10 +10,12 @@ from public_method import *
 data_url = 'http://index.baidu.com/api/SearchApi/index?area=0&word={keyword}&startDate={startdate}&endDate={enddate}'
 
 def run(params):
+    r_task = redis.Redis(**REDIS_SET_URL)
+    val = r_task.get('baidu_BDUSS')
     url = data_url.format(**params)
     # BDUSS替换成自己登陆后的值
     headers = dict(dict(
-        Cookie='BDUSS=',
+        Cookie='BDUSS={}'.format(val.decode()),
         Host='index.baidu.com',
         Referer='http://index.baidu.com/v2/main/index.html',
     ))

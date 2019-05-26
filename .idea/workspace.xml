@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/spiders/sougou_weixin.py" line="12" mnemonic="3" />
+    <bookmark url="file://$PROJECT_DIR$/spiders/sougou_weixin.py" line="14" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39448b66-a384-4902-af5e-106d4f2e52d2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/spiders/sougou_weixin.py" beforeDir="false" afterPath="$PROJECT_DIR$/spiders/sougou_weixin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/classes/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/classes/analog_login.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/classes/baidu/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/classes/baidu/baidu_login.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/classes/example/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/classes/example/baitong_extract.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/classes/example/baitong_login.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/classes/example/bilibili_login.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/classes/example/iqiyi_login.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/classes/extract_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/push_task.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/settings/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/settings/conf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/settings/plats_conf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/tool/YDMHTTPDemo3x.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/tool/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/tool/movie_verify.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/tool/process_tasks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login_extra/tool/warpper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public_method.py" beforeDir="false" afterPath="$PROJECT_DIR$/public_method.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spiders/baidu_index.py" beforeDir="false" afterPath="$PROJECT_DIR$/spiders/baidu_index.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,54 +38,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spiders/baidu_index.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/spiders/sougou_weixin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="592">
-              <caret line="64" column="43" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spiders/weixin_sougou.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2382">
-              <caret line="17" column="14" lean-forward="true" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="12" lean-forward="true" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public_method.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-18">
-              <caret line="32" column="23" lean-forward="true" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
+            <state relative-caret-position="105">
+              <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -85,6 +67,9 @@
       <find>encrypt_data_list</find>
       <find>2018年</find>
       <find>xmteditor</find>
+      <find>baid</find>
+      <find>mongo_setting</find>
+      <find>CrackSlider</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -98,15 +83,24 @@
         <option value="$PROJECT_DIR$/spiders/baidu_index_js_mobile.js" />
         <option value="$PROJECT_DIR$/settings.py" />
         <option value="$PROJECT_DIR$/public_method.py" />
-        <option value="$PROJECT_DIR$/spiders/baidu_index.py" />
         <option value="$PROJECT_DIR$/spiders/sougou_weixin.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/login_extra/main.py" />
+        <option value="$PROJECT_DIR$/login_extra/tool/warpper.py" />
+        <option value="$PROJECT_DIR$/login_extra/classes/baitong/baitong_extract.py" />
+        <option value="$PROJECT_DIR$/login_extra/classes/baitong/baitong_login.py" />
+        <option value="$PROJECT_DIR$/login_extra/settings/plats_conf.py" />
+        <option value="$PROJECT_DIR$/login_extra/classes/baidu/baidu_extract.py" />
+        <option value="$PROJECT_DIR$/login_extra/classes/example/bilibili_login.py" />
+        <option value="$PROJECT_DIR$/login_extra/classes/example/iqiyi_login.py" />
+        <option value="$PROJECT_DIR$/login_extra/classes/example/baitong_login.py" />
+        <option value="$PROJECT_DIR$/login_extra/classes/extract_data.py" />
+        <option value="$PROJECT_DIR$/login_extra/tool/process_tasks.py" />
+        <option value="$PROJECT_DIR$/login_extra/push_task.py" />
+        <option value="$PROJECT_DIR$/login_extra/tool/YDMHTTPDemo3x.py" />
+        <option value="$PROJECT_DIR$/login_extra/settings/conf.py" />
+        <option value="$PROJECT_DIR$/login_extra/classes/analog_login.py" />
+        <option value="$PROJECT_DIR$/login_extra/classes/baidu/baidu_login.py" />
+        <option value="$PROJECT_DIR$/spiders/baidu_index.py" />
       </list>
     </option>
   </component>
@@ -115,13 +109,14 @@
     <option name="width" value="1400" />
     <option name="height" value="757" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -132,15 +127,29 @@
             <path>
               <item name="spiders" type="b2602c69:ProjectViewProjectNode" />
               <item name="spiders" type="462c0819:PsiDirectoryNode" />
+              <item name="login_extra" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spiders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spiders" type="462c0819:PsiDirectoryNode" />
+              <item name="login_extra" type="462c0819:PsiDirectoryNode" />
+              <item name="tool" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spiders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spiders" type="462c0819:PsiDirectoryNode" />
               <item name="spiders" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -149,7 +158,14 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/login_extra/classes/example" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/spiders" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/login_extra/classes" />
+      <recent name="$PROJECT_DIR$/login_extra/tool" />
+      <recent name="$PROJECT_DIR$/login_extra/settings" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -164,7 +180,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.sougou_weixin">
+  <component name="RunManager" selected="Python.baidu_index">
+    <configuration name="YDMHTTPDemo3x" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="spiders" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/login_extra/tool" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/login_extra/tool/YDMHTTPDemo3x.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="baidu_index" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="spiders" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -187,7 +225,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="public_method" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="baidu_login" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="spiders" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -195,12 +233,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/login_extra/classes/baidu" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/public_method.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/login_extra/classes/baidu/baidu_login.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -209,7 +247,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="sougou_weixin" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="conf" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="spiders" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -217,12 +255,34 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/spiders" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/login_extra/settings" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/spiders/sougou_weixin.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/login_extra/settings/conf.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="push_task" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="spiders" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/login_extra" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/login_extra/push_task.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -233,9 +293,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.sougou_weixin" />
         <item itemvalue="Python.baidu_index" />
-        <item itemvalue="Python.public_method" />
+        <item itemvalue="Python.push_task" />
+        <item itemvalue="Python.baidu_login" />
+        <item itemvalue="Python.conf" />
+        <item itemvalue="Python.YDMHTTPDemo3x" />
       </list>
     </recent_temporary>
   </component>
@@ -249,96 +311,256 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1558762000229</updated>
-      <workItem from="1558762001558" duration="17514000" />
+      <workItem from="1558762001558" duration="22659000" />
+      <workItem from="1558842957574" duration="10895000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17514000" />
+    <option name="totallyTimeSpent" value="33554000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1400" height="757" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2496318" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17599411" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Python Console" weight="0.32932332" />
-      <window_info anchor="bottom" id="Terminal" weight="0.32932332" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32932332" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32932332" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32932332" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="SciView" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50073636" side_tool="true" weight="0.32932332" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4992636" visible="true" weight="0.32932332" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32932332" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/spiders$baidu_index.coverage" NAME="baidu_index Coverage Results" MODIFIED="1558798005238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spiders" />
-    <SUITE FILE_PATH="coverage/spiders$sougou_weixin.coverage" NAME="sougou_weixin Coverage Results" MODIFIED="1558826094390" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spiders" />
+    <SUITE FILE_PATH="coverage/spiders$baidu_index.coverage" NAME="baidu_index Coverage Results" MODIFIED="1558861869101" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spiders" />
+    <SUITE FILE_PATH="coverage/spiders$sougou_weixin.coverage" NAME="sougou_weixin Coverage Results" MODIFIED="1558826716319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spiders" />
+    <SUITE FILE_PATH="coverage/spiders$baidu_login.coverage" NAME="baidu_login Coverage Results" MODIFIED="1558856501232" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/login_extra/classes/baidu" />
+    <SUITE FILE_PATH="coverage/spiders$YDMHTTPDemo3x.coverage" NAME="YDMHTTPDemo3x Coverage Results" MODIFIED="1558849487419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/login_extra/tool" />
     <SUITE FILE_PATH="coverage/spiders$public_method.coverage" NAME="public_method Coverage Results" MODIFIED="1558779489656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/spiders$plats_conf.coverage" NAME="plats_conf Coverage Results" MODIFIED="1558830632946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/login_extra/settings" />
+    <SUITE FILE_PATH="coverage/spiders$push_task.coverage" NAME="push_task Coverage Results" MODIFIED="1558859797708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/login_extra" />
+    <SUITE FILE_PATH="coverage/spiders$conf.coverage" NAME="conf Coverage Results" MODIFIED="1558850310961" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/login_extra/settings" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/spiders/baidu_index_js_mobile.js">
+    <entry file="file://$PROJECT_DIR$/spiders/baidu_index_js_mobile.js" />
+    <entry file="file://$PROJECT_DIR$/spiders/weixin_sougou.html" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="19" lean-forward="true" selection-end-line="25" selection-end-column="16" />
+        <state relative-caret-position="67">
+          <caret line="335" selection-start-line="333" selection-end-line="335" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="12" lean-forward="true" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/login_extra/classes/baidu/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/spiders/baidu_index.py">
+    <entry file="file://$PROJECT_DIR$/spiders/sougou_weixin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+        <state relative-caret-position="1020">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public_method.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18">
-          <caret line="32" column="23" lean-forward="true" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
+        <state relative-caret-position="480">
+          <caret line="32" column="23" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spiders/weixin_sougou.html">
+    <entry file="file://$PROJECT_DIR$/login_extra/classes/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2382">
-          <caret line="17" column="14" lean-forward="true" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+        <state relative-caret-position="315">
+          <caret line="21" column="79" selection-start-line="3" selection-end-line="21" selection-end-column="79" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spiders/sougou_weixin.py">
+    <entry file="file://$PROJECT_DIR$/login_extra/settings/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_extra/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="64" column="43" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
+        <state relative-caret-position="189">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_extra/settings/plats_conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_extra/classes/example/iqiyi_login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2900">
+          <caret line="232" selection-start-line="232" selection-end-line="232" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_extra/tool/movie_verify.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_extra/classes/example/bilibili_login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="215" lean-forward="true" selection-start-line="215" selection-end-line="215" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_extra/classes/extract_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2205">
+          <caret line="147" column="72" lean-forward="true" selection-start-line="147" selection-start-column="72" selection-end-line="147" selection-end-column="72" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_extra/classes/example/baitong_login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="32" selection-start-line="19" selection-start-column="4" selection-end-line="32" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_extra/push_task.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_extra/classes/analog_login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="104" column="26" lean-forward="true" selection-start-line="104" selection-start-column="26" selection-end-line="104" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_extra/classes/baidu/baidu_login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="78" column="33" lean-forward="true" selection-start-line="78" selection-start-column="33" selection-end-line="78" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_extra/classes/example/baitong_extract.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-665">
+          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_extra/settings/conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-381">
+          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_extra/tool/warpper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_extra/tool/process_tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="41" column="49" lean-forward="true" selection-start-line="40" selection-start-column="12" selection-end-line="41" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login_extra/tool/YDMHTTPDemo3x.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="17" column="50" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spiders/baidu_index.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
