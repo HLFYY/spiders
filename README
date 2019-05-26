@@ -1,0 +1,17 @@
+本项目为个人爬虫总结
+
+1、百度指数的结果解密：
+代码：spiders/baidu_index.py
+破解过程：https://blog.csdn.net/weixin_41074255/article/details/90579939
+
+2、搜狗微信：通过关键词获取公众号及其发文
+代码：spiders/sougou_weixin.py
+
+3、模拟登陆模块：
+代码：login_extra
+
+---------------2019-05-26----------------
+
+
+
+
