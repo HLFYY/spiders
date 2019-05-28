@@ -10,6 +10,10 @@
 3、模拟登陆模块：
 代码：login_extra
 
+4、中国土地市场
+代码：spiders/china_land.py
+破解过程：https://blog.csdn.net/weixin_41074255/article/details/90631810
+
 ---------------2019-05-26----------------
 
 
