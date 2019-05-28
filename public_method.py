@@ -1,4 +1,3 @@
-import json
 import random
 from env import *
 
@@ -46,8 +45,59 @@ def get_sougou_weixin_detail_url(url):
     else:
         return url
 
+"""function stringToHex(str) {
+    var val = "";
+    for (var i = 0; i < str.length; i++) {
+        if (val == "") val = str.charCodeAt(i).toString(16);
+        else val += str.charCodeAt(i).toString(16);
+    }
+    return val;
+}
+function YunSuoAutoJump() {
+    var width = screen.width;
+    var height = screen.height;
+    var screendate = width + "," + height;
+    var curlocation = window.location.href;
+    if ( - 1 == curlocation.indexOf("security_verify_")) {
+        document.cookie = "srcurl=" + stringToHex(window.location.href) + ";path=/;";
+    }
+    self.location = "/default.aspx?tabid=226&security_verify_data=" + stringToHex(screendate);
+} < /script><script>setTimeout("YunSuoAutoJump()", 50);/"""
+
+def str2token(str_data):
+    token = ''
+    for val in str_data:
+        token += str(hex(ord(val)))
+    return token.replace('0x', '')
+
+def china_land(url):
+    screen_data = "1333,800"
+    cookie = ''
+    if "security_verify_" not in url:
+        cookie = 'srcurl=' + str2token(url) + ';path=/;'
+    url = "http://www.landchina.com/default.aspx?tabid=226&security_verify_data=" + str2token(screen_data)
+    return url, cookie
+
+def stringToHex(s):
+    val = ""
+    for k in s:
+        if (val == ""):
+            val = str(hex(ord(k)))
+        else:
+            val += str(hex(ord(k)))
+    return val.replace("0x", "")
+
+def get_cookie(url):
+    screendate = "1366,768" #  屏幕宽度和高度我们可以设置成固定值．
+    curlocation = url  # 当前请求的url
+    cookie = "srcurl=" + stringToHex(curlocation) + ";path=/;"
+    cookie = {"srcurl": cookie}
+    url = url + "&security_verify_data=" + stringToHex(screendate)
+    return url, cookie
+
 if __name__ == '__main__':
     # data = decrypt_baidu_index_response("rRP,Gi4XSkAvb1.42,108+95.6-37%", 'SRAXRPSb1bAPSbAAAPS1,irPSbAiGPSRbSAPS,A,APS,bbRPS,ArrPS,SrRPSSASSPSrRRSPSbRS1PSS,,XPSRiSRPSRR,GPSGbR,PSGGAbPSrRRbPSASbSPSSGiiPSS,,bPSrriSPSri1APSSrArPSSAGRPSbSirPSXRGRPSARriPS,bGS')
     # print(data)
-    print(get_sougou_weixin_detail_url('https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6EzDJysI4ql5MPrOUp16838dGRMI7NnPqqmqghgrZjZoAwla_S92HUwwvDqyjOWdzb_UcLpYkX0ABd5cGalMZ82hiRv6K94Zow4jG6WOtmaJceIcIwmExZxIIZrbOZGYWdida8Qgf2vh7OrhA4PNjrWMMdGfWP9xBOPhvugdGMUA52SESmjn9sm4OZCnxixtX&type=1&query=%E4%B8%8A%E6%B5%B7&k=68&h=d'))
-
+    # print(get_sougou_weixin_detail_url('https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6EzDJysI4ql5MPrOUp16838dGRMI7NnPqqmqghgrZjZoAwla_S92HUwwvDqyjOWdzb_UcLpYkX0ABd5cGalMZ82hiRv6K94Zow4jG6WOtmaJceIcIwmExZxIIZrbOZGYWdida8Qgf2vh7OrhA4PNjrWMMdGfWP9xBOPhvugdGMUA52SESmjn9sm4OZCnxixtX&type=1&query=%E4%B8%8A%E6%B5%B7&k=68&h=d'))
+    print(china_land('http://www.landchina.com/default.aspx?tabid=226'))
+    print(get_cookie('http://www.landchina.com/default.aspx?tabid=226'))

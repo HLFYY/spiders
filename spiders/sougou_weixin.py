@@ -1,9 +1,3 @@
-import re
-
-import requests
-import json
-from lxml import etree
-import time
 from urllib.parse import quote
 from public_method import *
 

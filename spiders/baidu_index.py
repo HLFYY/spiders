@@ -1,13 +1,12 @@
-import time
-
-import redis
-import requests
-import json
-
 from public_method import *
 
 # 日期格式：2019-02-24， area:默认全国（0）
 data_url = 'http://index.baidu.com/api/SearchApi/index?area=0&word={keyword}&startDate={startdate}&endDate={enddate}'
+
+proxies = {
+    'http': 'http://180.160.99.86:8888',
+    'https': 'http://180.160.99.86:8888',
+}
 
 def run(params):
     r_task = redis.Redis(**REDIS_SET_URL)
@@ -19,7 +18,7 @@ def run(params):
         Host='index.baidu.com',
         Referer='http://index.baidu.com/v2/main/index.html',
     ))
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, proxies=proxies)
     if 'not login' in response.text:
         print('----未登录, response:{}'.format(response.text))
         return
