@@ -1,24 +1,9 @@
-import random
-from env import *
-
-def loads_data(response, key=''):
-    if key:
-        return json.loads(response.text)[key]
-    else:
-        return json.loads(response.text)
-
-def get_headers(type='web'):
-    headers = {
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Accept-Language': 'zh-CN,zh;q=0.9',
-        'Connection': 'keep-alive',
-        'User-Agent': random.choice(APP_USER_AGENT)
-    }
-    if type == 'web':
-        headers['User-Agent'] = random.choice(BROWSER_USER_AGENT)
-    return headers
-
+import os
+import sys
+envplat_dir = os.path.dirname(os.path.realpath(__file__)).split("spiders")[0]
+sys.path.append(envplat_dir + "spiders")
+# from base_settings import *
+from base_method import *
 
 def decrypt_baidu_index_response(keys, encrypt_data):
     """百度指数返回结果解密"""
@@ -44,25 +29,6 @@ def get_sougou_weixin_detail_url(url):
         return url + '&k=' + str(k_data) + '&h=' + str(h_data)
     else:
         return url
-
-"""function stringToHex(str) {
-    var val = "";
-    for (var i = 0; i < str.length; i++) {
-        if (val == "") val = str.charCodeAt(i).toString(16);
-        else val += str.charCodeAt(i).toString(16);
-    }
-    return val;
-}
-function YunSuoAutoJump() {
-    var width = screen.width;
-    var height = screen.height;
-    var screendate = width + "," + height;
-    var curlocation = window.location.href;
-    if ( - 1 == curlocation.indexOf("security_verify_")) {
-        document.cookie = "srcurl=" + stringToHex(window.location.href) + ";path=/;";
-    }
-    self.location = "/default.aspx?tabid=226&security_verify_data=" + stringToHex(screendate);
-} < /script><script>setTimeout("YunSuoAutoJump()", 50);/"""
 
 def str2token(str_data):
     token = ''

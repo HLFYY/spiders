@@ -1,5 +1,6 @@
 import json
 import re
+import socket
 import requests
 from lxml import etree
 import time
@@ -7,28 +8,51 @@ import redis
 from pymongo import MongoClient
 import random
 import time
+import os
+import platform
 
+# 各类配置信息对应的redis_key
+SEND_NODE_KEY = 'send_node_user'  # {'account_sid': '', 'auth_token':'', 'to_phone': '', 'from_phone': '', }
+SEND_EMAIL_KEY = 'send_email_user'  # {'user': '', 'password': '', 'to_email': ''}
+YUN_DAMA_KEY = 'yundama_user'  # {'username': '', 'password': '', 'appkey': ''}
+SERVER_IP_KEY = 'sever_ip'  # ip
+
+SPIDER_LOG_DIR = '/data/logs/spider'
+SERVER_LOG_DIR = '/data/logs/server'
 
 MONGO_SETTING = {
     'host': '127.0.0.1',
     'port': 27017,
     'real_db': 'datas',
 }
-REDIS_SET_URL = {
+# db=0，存储配置信息
+REDIS_CONFIG = {
+    'host': '127.0.0.1',
+    'port': 6379,
+    'db': 0,
+    'password': '',
+}
+# db=2, 存储爬虫数据
+REDIS_SPIDER = {
     'host': '127.0.0.1',
     'port': 6379,
     'db': 2,
-    'password': '',
-}
-REDIS_SET_FILTER = {
-    'host': '127.0.0.1',
-    'port': 6379,
-    'db': 4,
     'password': ''
 }
-MONGO_STR = "mongodb://{host}:{port}/{real_db}".format(**MONGO_SETTING)
-REDIS_URL = 'redis://:{password}@{host}:{port}?db={db}'.format(**REDIS_SET_URL)
 
+if 'MacBook' in socket.gethostname():
+    ONLINE = False
+else:
+    ONLINE = True
+
+MONGO_STR = "mongodb://{host}:{port}/{real_db}".format(**MONGO_SETTING)
+REDIS_CONFIG_URL = 'redis://:{password}@{host}:{port}?db={db}'.format(**REDIS_CONFIG)
+REDIS_SPIDER_URL = 'redis://:{password}@{host}:{port}?db={db}'.format(**REDIS_SPIDER)
+
+if not os.path.exists(SPIDER_LOG_DIR):
+    os.makedirs(SPIDER_LOG_DIR)
+if not os.path.exists(SERVER_LOG_DIR):
+    os.makedirs(SERVER_LOG_DIR)
 
 
 APP_USER_AGENT = [

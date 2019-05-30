@@ -3,7 +3,7 @@ import redis
 from settings.conf import *
 
 def push_login_data():
-    r_task = redis.Redis(**REDIS_SET_URL)
+    r_task = redis.Redis(**REDIS_SPIDER_URL)
     push_data =dict(
         acc='',
         pwd='',

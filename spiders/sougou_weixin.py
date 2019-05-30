@@ -1,5 +1,5 @@
 from urllib.parse import quote
-from public_method import *
+from decrypt_methed import *
 
 list_url = 'https://weixin.sogou.com/weixinwap?query={}&type=1&ie=utf8&_sug_=y&_sug_type_=&s_from=inputå'
 # 转义符与字符串映射

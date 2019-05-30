@@ -18,36 +18,20 @@ import urllib3
 import re
 import platform
 
+import sys
+envplat_dir = os.path.dirname(os.path.realpath(__file__)).split("spiders")[0]
+sys.path.append(envplat_dir + "spiders")
+from base_settings import *
+
 
 LOGIN_PLATS = []
 CRAWL_PLATS = []
 
-DIR_ = '/Users/houjie/Desktop/images/'
+DIR_ = '/data/logs/images/'
 if not os.path.exists(DIR_):
     os.system('mkdir -p {}'.format(DIR_))
 
 TASK_REDIS_KEY = 'task_queue'
-
-MONGO_SETTING = {
-    'host': 'localhost',
-    'port': 27017,
-    'db': 'cookies',
-    'col': 'cookies',
-}
-REDIS_SET_URL = {
-    'host': '127.0.0.1',
-    'port': 6379,
-    'db': 2,
-    'password': '',
-}
-REDIS_SET_FILTER = {
-    'host': '127.0.0.1',
-    'port': 6379,
-    'db': 4,
-    'password': ''
-}
-MONGO_STR = "mongodb://{host}:{port}/{db}".format(**MONGO_SETTING)
-REDIS_URL = 'redis://:{password}@{host}:{port}?db={db}'.format(**REDIS_SET_URL)
 
 PROCESS_NUMS = 1
 

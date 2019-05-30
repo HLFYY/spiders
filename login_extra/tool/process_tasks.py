@@ -1,12 +1,10 @@
 import json
 from multiprocessing import Process, Queue
-
 import redis
-
 from settings.plats_conf import *
 from tool.warpper import warning
 from copy import copy
-from settings.conf import PROCESS_NUMS, TASK_REDIS_KEY, REDIS_SET_URL
+from settings.conf import PROCESS_NUMS, TASK_REDIS_KEY, REDIS_SPIDER_URL
 import time
 import os
 
@@ -15,7 +13,7 @@ class Tasks(object):
     def __init__(self, process_nums=1, type='login'):
         self.process_nums = process_nums
         self.q = Queue()
-        self.r_task = redis.Redis(**REDIS_SET_URL)
+        self.r_task = redis.Redis(**REDIS_SPIDER_URL)
         if type == 'login':
             self.run_task = self.login_task
         else:

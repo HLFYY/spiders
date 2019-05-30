@@ -1,4 +1,4 @@
-from public_method import *
+from decrypt_methed import *
 
 url = "http://www.landchina.com/default.aspx?tabid=226"
 session = requests.session()

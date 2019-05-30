@@ -1,14 +1,12 @@
 import random
-
+import time
 import tornado.ioloop
 import tornado.web
 import redis
 import hashlib
+from adsl_settings import *
 
-def MD5(data_str):
-    object = hashlib.md5()
-    object.update(data_str.encode('utf-8'))
-    return object.hexdigest()
+logger = logger(file_name='adsl_server', handel='log')
 
 def get_sign(key):
     sign_raw = MD5(key)
@@ -18,12 +16,13 @@ def get_sign(key):
         sign += sign_raw[index] + salt[index]
     return sign
 
-redis = redis.Redis()
+redis = redis.Redis(**REDIS_SPIDER)
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         keys = redis.keys('proxy_*')
         if keys and redis.get(random.choice(keys)):
             data = redis.get(random.choice(keys))
+            logger.info('-----time:{}, back ip:{}'.format(time.strftime("%Y-%m-%d %H:%M:%S"), data))
             self.write(data)
         else:
             self.write('NO PROXY')
@@ -35,11 +34,11 @@ class MainHandler(tornado.web.RequestHandler):
         name = self.get_body_argument('name', default=None, strip=False)
         key = self.get_body_argument('key', default=None, strip=False)
         sign = self.get_body_argument('sign', default=None, strip=False)
-        print('ip:{}, port:{}, name:{}, key:{}, sign:{}'.format(ip, port, name, key, sign))
+        logger.info('----get_proxy_ip: time:{}, ip:{}, port:{}, name:{}, key:{}, sign:{}'.format(time.strftime("%Y-%m-%d %H:%M:%S"), ip, port, name, key, sign))
         if sign == get_sign(key) and ip:
             proxy = ip + ':' + port
-            print('Receive proxy', proxy)
             redis.set('proxy_'+name, proxy)
+            redis.sadd('use_ips', ip)
         elif sign != get_sign(key):
             self.write('Wrong Token')
         elif not ip:

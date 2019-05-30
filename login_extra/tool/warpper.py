@@ -1,11 +1,8 @@
-import traceback
 from settings.conf import *
-import requests
-import uuid
 from pymongo import MongoClient
-import json
 import platform
 import time
+from base_method import *
 
 def get_cookie(plat, acc):
     client = MongoClient(MONGO_STR)

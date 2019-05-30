@@ -1,15 +1,10 @@
-from public_method import *
+from decrypt_methed import *
 
 # 日期格式：2019-02-24， area:默认全国（0）
 data_url = 'http://index.baidu.com/api/SearchApi/index?area=0&word={keyword}&startDate={startdate}&endDate={enddate}'
 
-proxies = {
-    'http': 'http://180.160.99.86:8888',
-    'https': 'http://180.160.99.86:8888',
-}
-
 def run(params):
-    r_task = redis.Redis(**REDIS_SET_URL)
+    r_task = redis.Redis(**REDIS_SPIDER)
     val = r_task.get('baidu_BDUSS')
     url = data_url.format(**params)
     # BDUSS替换成自己登陆后的值
@@ -18,7 +13,7 @@ def run(params):
         Host='index.baidu.com',
         Referer='http://index.baidu.com/v2/main/index.html',
     ))
-    response = requests.get(url, headers=headers, proxies=proxies)
+    response = requests.get(url, headers=headers, proxies=get_proxy())
     if 'not login' in response.text:
         print('----未登录, response:{}'.format(response.text))
         return
@@ -31,7 +26,7 @@ def run(params):
     time.sleep(1)
     uniqid = data['uniqid']
     uniqid_url = 'https://index.baidu.com/Interface/api/ptbk?uniqid={}'.format(uniqid)
-    response = requests.get(uniqid_url, headers=headers)
+    response = requests.get(uniqid_url, headers=headers, proxies=get_proxy())
     key_data = loads_data(response, 'data')
 
     # 解密数据
