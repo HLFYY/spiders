@@ -2,7 +2,7 @@
 PATH=/root/venv/python3-forcrawl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
 
 server_process_name="adsl_server.py"
-cd /root/code
+cd /root/code/spiders/adsl_server
 ps -fe|grep $server_process_name |grep -v grep
 if [ $? -ne 0 ]
 then
