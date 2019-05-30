@@ -6,7 +6,7 @@ import redis
 import hashlib
 from adsl_settings import *
 
-logger = logger(file_name='adsl_server', handel='log')
+logger = logger(file_name='adsl_server')
 
 def get_sign(key):
     sign_raw = MD5(key)

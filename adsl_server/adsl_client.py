@@ -7,7 +7,7 @@ import hashlib
 import redis
 from adsl_settings import *
 
-logger = logger(file_name='adsl_client', handel='log')
+logger = logger(file_name='adsl_client')
 
 ADSL_STOP = 'adsl-stop'
 ADSL_START = 'adsl-start'
@@ -22,7 +22,7 @@ def adsl():
 def get_ip(ifname=ADSL_IFNAME):
     for i in range(3):
         status_stop, output_stop, status_start, output_start = adsl()
-        logger.info('time:{}, status_stop:{} , output_stop:{} , status_start:{} , output_start:{}'.format(time.strftime("%Y-%m-%d %H:%M:%S"), status_stop, output_stop, status_start, output_start))
+        logger.info('----time:{}, status_stop:{} , output_stop:{} , status_start:{} , output_start:{}'.format(time.strftime("%Y-%m-%d %H:%M:%S"), status_stop, output_stop, status_start, output_start))
         if (status_start or status_stop) and i < 2 :
             logger.info('----time:{}, 拨号失败, 重试'.format(time.strftime("%Y-%m-%d %H:%M:%S")))
             if status_start:
@@ -63,7 +63,7 @@ def run():
         'name': 'houjie_001',
     }
     logger.info('----time:{}, post_data:{}'.format(time.strftime("%Y-%m-%d %H:%M:%S"), data))
-    response = requests.post('http://{}'.format(r_cli.get(SERVER_IP_KEY).decode()), data=data)
+    response = requests.post('http://{}:8888'.format(r_cli.get(SERVER_IP_KEY).decode()), data=data)
     if response.status_code != 200:
         logger.error('>>>>返回状态码不是200, data:{}, status_code:{}'.format(data, response.status_code))
         send_note('推送IP失败,返回状态码不是200, data:{}, status_code:{}'.format(data, response.status_code))
