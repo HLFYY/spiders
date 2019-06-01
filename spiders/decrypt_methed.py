@@ -4,6 +4,7 @@ envplat_dir = os.path.dirname(os.path.realpath(__file__)).split("spiders")[0]
 sys.path.append(envplat_dir + "spiders")
 # from base_settings import *
 from base_method import *
+from log_setting import logger
 
 def decrypt_baidu_index_response(keys, encrypt_data):
     """百度指数返回结果解密"""
@@ -24,6 +25,7 @@ def get_sougou_weixin_detail_url(url):
     h_data = url.index('url=')
     c_data = url.index('&k=') if '&k=' in url else -1
     print(k_data, h_data, c_data)
+
     if h_data != -1 and c_data == -1:
         h_data = url[h_data+ 30 + k_data:h_data+ 31 + k_data]
         return url + '&k=' + str(k_data) + '&h=' + str(h_data)
@@ -65,5 +67,6 @@ if __name__ == '__main__':
     # data = decrypt_baidu_index_response("rRP,Gi4XSkAvb1.42,108+95.6-37%", 'SRAXRPSb1bAPSbAAAPS1,irPSbAiGPSRbSAPS,A,APS,bbRPS,ArrPS,SrRPSSASSPSrRRSPSbRS1PSS,,XPSRiSRPSRR,GPSGbR,PSGGAbPSrRRbPSASbSPSSGiiPSS,,bPSrriSPSri1APSSrArPSSAGRPSbSirPSXRGRPSARriPS,bGS')
     # print(data)
     # print(get_sougou_weixin_detail_url('https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6EzDJysI4ql5MPrOUp16838dGRMI7NnPqqmqghgrZjZoAwla_S92HUwwvDqyjOWdzb_UcLpYkX0ABd5cGalMZ82hiRv6K94Zow4jG6WOtmaJceIcIwmExZxIIZrbOZGYWdida8Qgf2vh7OrhA4PNjrWMMdGfWP9xBOPhvugdGMUA52SESmjn9sm4OZCnxixtX&type=1&query=%E4%B8%8A%E6%B5%B7&k=68&h=d'))
-    print(china_land('http://www.landchina.com/default.aspx?tabid=226'))
-    print(get_cookie('http://www.landchina.com/default.aspx?tabid=226'))
+    print(get_sougou_weixin_detail_url('/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6EzDJysI4ql5MPrOUp16838dGRMI7NnPqERBhyS3pkIBJmUnGOsj5sAwvDqyjOWdzMmpGksUKiyE_Tvi0whLU5cCowwMU67tf8tcP0o0o_7IFlfgEmchfFxYpBdjoH0vIIdG2vChq_ChPHT-bnSSlhxnC98UDZYl-klHlKAxTKYxkhZQjSUnUsGRTpLLTNgHY&type=1&query=%E5%8C%97%E4%BA%AC'))
+    # print(china_land('http://www.landchina.com/default.aspx?tabid=226'))
+    # print(get_cookie('http://www.landchina.com/default.aspx?tabid=226'))

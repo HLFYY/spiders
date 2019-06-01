@@ -22,7 +22,7 @@ class MainHandler(tornado.web.RequestHandler):
         keys = redis.keys('proxy_*')
         if keys and redis.get(random.choice(keys)):
             data = redis.get(random.choice(keys))
-            logger.info('-----time:{}, back ip:{}'.format(time.strftime("%Y-%m-%d %H:%M:%S"), data))
+            logger.info('-----back ip:{}'.format(data))
             self.write(data)
         else:
             self.write('NO PROXY')
@@ -34,7 +34,7 @@ class MainHandler(tornado.web.RequestHandler):
         name = self.get_body_argument('name', default=None, strip=False)
         key = self.get_body_argument('key', default=None, strip=False)
         sign = self.get_body_argument('sign', default=None, strip=False)
-        logger.info('----get_proxy_ip: time:{}, ip:{}, port:{}, name:{}, key:{}, sign:{}'.format(time.strftime("%Y-%m-%d %H:%M:%S"), ip, port, name, key, sign))
+        logger.info('----get_proxy_ip: ip:{}, port:{}, name:{}, key:{}, sign:{}'.format(ip, port, name, key, sign))
         if sign == get_sign(key) and ip:
             proxy = ip + ':' + port
             redis.set('proxy_'+name, proxy)

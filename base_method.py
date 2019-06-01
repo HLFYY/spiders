@@ -7,10 +7,11 @@ import hashlib
 
 def send_note(body):
     """发送短信"""
-    data = 'date: {} || platform {} || content {}'.format(time.strftime('%Y-%m-%d %H:%M:%S'), platform.node(), body)
+    # data = 'date: {} || platform {} || content {}'.format(time.strftime('%Y-%m-%d %H:%M:%S'), platform.node(), body)
     r = redis.Redis(**REDIS_CONFIG)
     datas = r.get(SEND_NODE_KEY)
     data_dict = json.loads(datas.decode())
+    print(data_dict)
     account_sid = data_dict['account_sid']
     auth_token = data_dict['auth_token']
     client = Client(account_sid, auth_token)
@@ -18,8 +19,9 @@ def send_note(body):
     # 这里中国的号码前面需要加86
     to='+86' + data_dict['to_phone'],
     from_='+' + data_dict['from_phone'],
-    body=data)
-    # print(message.sid)
+    body=body)
+    print(body)
+    print(message.sid)
 
 def send_email(body, title='报警'):
     """发送邮件"""
@@ -65,5 +67,5 @@ def get_proxy():
     return proxy_dict
 
 if __name__ == '__main__':
-    # send_note('hello')
-    print(get_proxy())
+    send_note('hello')
+    # print(get_proxy())

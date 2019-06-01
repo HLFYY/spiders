@@ -1,4 +1,4 @@
-本项目为个人爬虫总结
+本项目为个人项目总结, 详细过程见博客：https://blog.csdn.net/weixin_41074255
 
 1、百度指数的结果解密：
 代码：spiders/baidu_index.py
@@ -7,17 +7,16 @@
 2、搜狗微信：通过关键词获取公众号及其发文
 代码：spiders/sougou_weixin.py
 
-3、模拟登陆模块：
-代码：login_extra
-
-4、中国土地市场
+3、中国土地市场
 代码：spiders/china_land.py
 破解过程：https://blog.csdn.net/weixin_41074255/article/details/90631810
 
+4、模拟登陆模块：
+代码：login_extra
+
 5、adsl拨号代理项目
 代码：adsl_server
-
----------------2019-05-26----------------
+搭建过程：https://blog.csdn.net/weixin_41074255/article/details/90725879
 
 
 
