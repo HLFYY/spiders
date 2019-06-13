@@ -49,7 +49,7 @@ LOGGING = {
             'class': 'logging.handlers.RotatingFileHandler',
             'formatter': 'standard',
             'filename': os.path.join(SERVER_LOG_DIR, 'default.log'),  # 输出位置
-            'maxBytes': 1024 * 1024 * 20,  # 文件大小
+            'maxBytes': 1024 * 1024 * 50,  # 文件大小
             'backupCount': 5,  # 备份份数
             'encoding': 'utf8',  # 文件编码
         },

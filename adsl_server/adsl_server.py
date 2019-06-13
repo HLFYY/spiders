@@ -22,7 +22,8 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         keys = redis.keys('proxy_*')
         if keys and redis.get(random.choice(keys)):
-            ip_port = redis.get(random.choice(keys))
+            key = random.choice(keys)
+            ip_port = redis.get(key)
             ip_port = ip_port.decode()
             logger.info('-----back ip:{}'.format(ip_port))
             back_data = {
@@ -30,6 +31,7 @@ class MainHandler(tornado.web.RequestHandler):
                 'proxy': ip_port,
                 'proxy_num': len(keys),
             }
+            redis.incr('time_{}'.format(key.decode()))
             self.write(json.dumps(back_data, ensure_ascii=False))
         else:
             back_data = {
