@@ -17,20 +17,31 @@ def get_sign(key):
     return sign
 
 redis = redis.Redis(**REDIS_SPIDER)
+
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         keys = redis.keys('proxy_*')
         if keys and redis.get(random.choice(keys)):
-            data = redis.get(random.choice(keys))
-            logger.info('-----back ip:{}'.format(data))
-            self.write(data)
+            ip_port = redis.get(random.choice(keys))
+            ip_port = ip_port.decode()
+            logger.info('-----back ip:{}'.format(ip_port))
+            back_data = {
+                'message': 'SUCCESS',
+                'proxy': ip_port,
+                'proxy_num': len(keys),
+            }
+            self.write(json.dumps(back_data, ensure_ascii=False))
         else:
-            self.write('NO PROXY')
-
+            back_data = {
+                'message': 'FALSE',
+                'proxy': '',
+                'proxy_num': 0,
+            }
+            self.write(json.dumps(back_data, ensure_ascii=False))
 
     def post(self):
         ip = self.get_body_argument('ip', default=None, strip=False)
-        port = self.get_body_argument('port', default='8888', strip=False)
+        port = self.get_body_argument('port', default='3244', strip=False)
         name = self.get_body_argument('name', default=None, strip=False)
         key = self.get_body_argument('key', default=None, strip=False)
         sign = self.get_body_argument('sign', default=None, strip=False)
@@ -46,7 +57,7 @@ class MainHandler(tornado.web.RequestHandler):
 
 def make_app():
     return tornado.web.Application([
-        (r"/", MainHandler),
+        (r"/proxy", MainHandler),
     ])
 
 

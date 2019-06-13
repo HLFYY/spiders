@@ -16,6 +16,7 @@ SEND_NODE_KEY = 'send_node_user'  # {'account_sid': '', 'auth_token':'', 'to_pho
 SEND_EMAIL_KEY = 'send_email_user'  # {'user': '', 'password': '', 'to_email': ''}
 YUN_DAMA_KEY = 'yundama_user'  # {'username': '', 'password': '', 'appkey': ''}
 SERVER_IP_KEY = 'sever_ip'  # ip
+PROXY_AUTH = 'proxy_auth'  # 代理认证
 
 SPIDER_LOG_DIR = '/data/logs/spider'
 SERVER_LOG_DIR = '/data/logs/server'

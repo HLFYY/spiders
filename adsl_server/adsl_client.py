@@ -51,6 +51,8 @@ def get_ip(data, ifname=ADSL_IFNAME):
         ip = match_ip(ifname)
         if current_ip != ip:
             return ip
+        elif num >= 2:
+            return ip
         else:
             logger.info('----代理ip未变，重新拨号, ip:{}, pre_ip:{}'.format(ip, current_ip))
             # time.sleep(2)
@@ -70,18 +72,19 @@ def run():
         'key': key,
         'sign': get_sign(sign_raw),
         'name': 'houjie_001',
+        'port': 3244,
     }
     logger.info('----开始拨号')
     ip = get_ip(data)
     if not ip:
         logger.error('>>>>未获取ip')
-        send_note('拨号失败，未获取IP')
+        send_email('拨号失败，未获取IP', '动态代理服务器')
         return
 
     data['ip'] = ip
     r_cli.set(data['name'], ip)
     logger.info('----post_data:{}'.format(data))
-    response = requests.post('http://{}:8888'.format(r_cli.get(SERVER_IP_KEY).decode()), data=data)
+    response = requests.post('http://{}:8888/proxy'.format(r_cli.get(SERVER_IP_KEY).decode()), data=data)
     if response.status_code != 200:
         logger.error('>>>>返回状态码不是200, data:{}, status_code:{}'.format(data, response.status_code))
         send_note('推送IP失败,返回状态码不是200, data:{}, status_code:{}'.format(data, response.status_code))

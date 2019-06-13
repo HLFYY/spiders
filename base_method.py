@@ -20,7 +20,6 @@ def send_note(body):
     to='+86' + data_dict['to_phone'],
     from_='+' + data_dict['from_phone'],
     body=body)
-    print(body)
     print(message.sid)
 
 def send_email(body, title='报警'):
@@ -58,14 +57,20 @@ def MD5(data_str):
 
 def get_proxy():
     r = redis.Redis(**REDIS_CONFIG)
+    print(PROXY_AUTH)
     ip = r.get(SERVER_IP_KEY).decode()
-    proxy = requests.get('http://{}:8888'.format(ip))
+    auth = r.get(PROXY_AUTH).decode()
+    response = requests.get('http://{}:8888/proxy'.format(ip))
+    data_dict = json.loads(response.text)
+    if data_dict['message'] == 'SUCCESS':
+        proxy = data_dict['proxy']
     proxy_dict = {
-        'http': 'http://{}'.format(proxy.text),
-        'https': 'https://{}'.format(proxy.text)
+        'http': 'http://{}@{}'.format(auth, proxy),
+        'https': 'https://{}@{}'.format(auth, proxy)
     }
     return proxy_dict
 
 if __name__ == '__main__':
-    send_note('hello')
-    # print(get_proxy())
+    # send_note('hello')
+    print(get_proxy())
+    # print(MD5("/jp/dash?tvid=11878510309&bid=500&abid=100&src=02027221010000000000&ut=0&ori=h5&ps=0&messageId=1559650754970&pt=0&lid=&cf=&ct=&locale=zh_cn&k_tag=1&dfp=a038afc5a7d37744f493c2030b915b91eb7b2265f33215877881bd2887b108a886&k_ft1=17729624997888&k_uid=1559650754971&qd_v=1&qdy=a&qds=0&tm=1559650754971&callback=onSuccess"))
