@@ -66,34 +66,56 @@ def get_sign(sign_raw):
     return sign
 
 def run():
-    key = str(random.randint(10**3, 10**5))
-    sign_raw = MD5(key)
-    data = {
-        'key': key,
-        'sign': get_sign(sign_raw),
-        'name': 'houjie_001',
-        'port': 3244,
-    }
-    logger.info('----开始拨号')
-    response = requests.post('http://{}:8888/proxy/delete'.format(r_cli.get(SERVER_IP_KEY).decode()), data=data)
-    logger.info('----delete proxy, response:{}'.format(response.text))
-    ip = get_ip(data)
-    if not ip:
-        logger.error('>>>>未获取ip')
-        send_email('拨号失败，未获取IP', '动态代理服务器')
-        return
+    is_wrong = False
+    for i in range(2):
+        key = str(random.randint(10**3, 10**5))
+        sign_raw = MD5(key)
+        data = {
+            'key': key,
+            'sign': get_sign(sign_raw),
+            'name': 'houjie_001',
+            'port': 3244,
+        }
+        logger.info('----开始拨号')
 
-    data['ip'] = ip
-    r_cli.set(data['name'], ip)
-    logger.info('----post_data:{}'.format(data))
-    response = requests.post('http://{}:8888/proxy'.format(r_cli.get(SERVER_IP_KEY).decode()), data=data)
-    logger.info('----push proxy, response:{}'.format(response.text))
-    try:
-        res_dict = json.loads(response.text)
-        if res_dict['message'] != 'SUCCESS':
-            send_email('推送IP失败,response:{}'.format(response.text))
-    except:
-        send_email('推送IP失败,返回结果非json, response:{}'.format(response.text))
+        # 删除对应IP:PORT
+        try:
+            response = requests.post('http://{}:8888/proxy/delete'.format(r_cli.get(SERVER_IP_KEY).decode()), data=data)
+        except Exception as e:
+            logger.error('delete proxy request is wrong, e: {}'.format(e))
+            # 拨号失败，导致服务器处于adsl-stop状态，故执行adsl-start
+            if 'Network is unreachable' in str(e):
+                subprocess.getstatusoutput(ADSL_START)
+
+            # 如果重试一次还是无法发送数据，则继续执行拨号操作，不进行阻塞
+            if i >= 1:
+                is_wrong = True
+                # send_email('delete proxy request is wrong, e: {}'.format(e), 'adsl_client 告警')
+            else:
+                continue
+        logger.info('----delete proxy, response:{}'.format(response.text))
+
+        # 获取新IP
+        ip = get_ip(data)
+        if not ip:
+            logger.error('>>>>未获取ip')
+            send_email('拨号失败，未获取IP', 'adsl_client 告警')
+            return
+
+        data['ip'] = ip
+        r_cli.set(data['name'], ip)
+        logger.info('----post_data:{}'.format(data))
+        response = requests.post('http://{}:8888/proxy'.format(r_cli.get(SERVER_IP_KEY).decode()), data=data)
+        logger.info('----push proxy, response:{}'.format(response.text))
+        try:
+            res_dict = json.loads(response.text)
+            if res_dict['message'] != 'SUCCESS':
+                send_email('推送IP失败,response:{}'.format(response.text), 'adsl_client 告警')
+        except:
+            send_email('推送IP失败,返回结果非json, response:{}'.format(response.text), 'adsl_client 告警')
+        if is_wrong:
+            send_email('delete proxy request is wrong, e: {}'.format(e), 'adsl_client 告警')
+        break
 
 if __name__ == '__main__':
     run()
