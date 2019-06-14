@@ -75,6 +75,8 @@ def run():
         'port': 3244,
     }
     logger.info('----开始拨号')
+    response = requests.post('http://{}:8888/proxy/delete'.format(r_cli.get(SERVER_IP_KEY).decode()), data=data)
+    logger.info('----delete proxy, response:{}'.format(response.text))
     ip = get_ip(data)
     if not ip:
         logger.error('>>>>未获取ip')
@@ -85,9 +87,13 @@ def run():
     r_cli.set(data['name'], ip)
     logger.info('----post_data:{}'.format(data))
     response = requests.post('http://{}:8888/proxy'.format(r_cli.get(SERVER_IP_KEY).decode()), data=data)
-    if response.status_code != 200:
-        logger.error('>>>>返回状态码不是200, data:{}, status_code:{}'.format(data, response.status_code))
-        send_note('推送IP失败,返回状态码不是200, data:{}, status_code:{}'.format(data, response.status_code))
+    logger.info('----push proxy, response:{}'.format(response.text))
+    try:
+        res_dict = json.loads(response.text)
+        if res_dict['message'] != 'SUCCESS':
+            send_email('推送IP失败,response:{}'.format(response.text))
+    except:
+        send_email('推送IP失败,返回结果非json, response:{}'.format(response.text))
 
 if __name__ == '__main__':
     run()

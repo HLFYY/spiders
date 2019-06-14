@@ -61,7 +61,7 @@ LOGGING = {
         'root': {
             'handlers': ['log', 'console'],
             'level': 'DEBUG',
-            'propagate': True,  # 是否传递给父记录器
+            'propagate': False,  # 是否传递给父记录器
         },
     }
 }

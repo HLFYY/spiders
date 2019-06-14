@@ -57,7 +57,6 @@ def MD5(data_str):
 
 def get_proxy():
     r = redis.Redis(**REDIS_CONFIG)
-    print(PROXY_AUTH)
     ip = r.get(SERVER_IP_KEY).decode()
     auth = r.get(PROXY_AUTH).decode()
     response = requests.get('http://{}:8888/proxy'.format(ip))

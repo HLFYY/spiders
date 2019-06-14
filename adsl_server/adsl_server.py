@@ -6,7 +6,7 @@ import redis
 import hashlib
 from adsl_settings import *
 
-logger = logger(file_name='adsl_server')
+logger = logger(file_name='adsl_server', handel='console')
 
 def get_sign(key):
     sign_raw = MD5(key)
@@ -39,6 +39,7 @@ class MainHandler(tornado.web.RequestHandler):
                 'proxy': '',
                 'proxy_num': 0,
             }
+            logger.info('-----not ip')
             self.write(json.dumps(back_data, ensure_ascii=False))
 
     def post(self):
@@ -52,14 +53,46 @@ class MainHandler(tornado.web.RequestHandler):
             proxy = ip + ':' + port
             redis.set('proxy_'+name, proxy)
             redis.sadd('use_ips', ip)
+            response = {
+                'message': 'SUCCESS',
+                'reason': '',
+            }
         elif sign != get_sign(key):
-            self.write('Wrong Token')
-        elif not ip:
-            self.write('No Client ip')
+            response = {
+                'message': 'FALSE',
+                'reason': 'Wrong Token',
+            }
+        else:
+            response = {
+                'message': 'FALSE',
+                'reason': 'No Client ip',
+            }
+        self.write(json.dumps(response, ensure_ascii=False))
+
+class MainDelete(tornado.web.RequestHandler):
+    def post(self):
+        name = self.get_body_argument('name', default=None, strip=False)
+        key = self.get_body_argument('key', default=None, strip=False)
+        sign = self.get_body_argument('sign', default=None, strip=False)
+        logger.info('----del_proxy_ip: name:{}, key:{}, sign:{}'.format(name, key, sign))
+        if sign == get_sign(key):
+            redis.delete('proxy_' + name)
+            response = {
+                'message': 'SUCCESS',
+                'reason': '',
+            }
+        else:
+            response = {
+                'message': 'FALSE',
+                'reason': 'Wrong Token',
+            }
+        self.write(json.dumps(response, ensure_ascii=False))
+
 
 def make_app():
     return tornado.web.Application([
         (r"/proxy", MainHandler),
+        (r"/proxy/delete", MainDelete),
     ])
 
 

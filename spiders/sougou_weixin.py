@@ -73,12 +73,12 @@ def run(word):
             # 获取公众号主页的真实地址
             time.sleep(1)
             headers['Cookie'] = 'ABTEST=0|1559373999|v1; SUID=6E93E4743F18960A000000005CF228AF; SUV=006D74F274E4936E5CF228B074049498; SUID=6E93E4743118960A000000005CF228B0; IPLOC=CN3100; JSESSIONID=aaak3ff2bNNVJ5d15kkRw; PHPSESSID=8oa4upc7tbaj9tanfalf9ev226; usid=FCLrGR6-dhukSwC8; SNUID=9EFB86B6C7C24C41321E00EDC7BD4CE3'
-            res = requests.get(get_sougou_weixin_detail_url(detail_url), headers=headers)
+            res = requests.get(get_sougou_weixin_detail_url(detail_url), headers=headers, proxies=get_proxy())
             url_params = re.findall(r"url.*?\+=.*?'(.*?)';", res.content.decode('utf-8'), re.S)
             author_url = ''.join(url_params)
             if not author_url:
                 print('---获取真实链接失败, raw_url:{}, redirect_url:{}'.format(get_sougou_weixin_detail_url(detail_url), res.url))
-                continue
+                break
             print(pg, detail_list.index(detail_url), author_url)
             continue
 
