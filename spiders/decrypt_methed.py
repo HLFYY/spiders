@@ -1,5 +1,6 @@
 import os
 import sys
+import execjs
 envplat_dir = os.path.dirname(os.path.realpath(__file__)).split("spiders")[0]
 sys.path.append(envplat_dir + "spiders")
 # from base_settings import *
@@ -40,11 +41,13 @@ def get_sougou_weixin_detail_url(url):
     else:
         return url
 
+
 def str2token(str_data):
     token = ''
     for val in str_data:
         token += str(hex(ord(val)))
     return token.replace('0x', '')
+
 
 def china_land(url):
     """中国土地市场网"""
@@ -64,6 +67,7 @@ def stringToHex(s):
             val += str(hex(ord(k)))
     return val.replace("0x", "")
 
+
 def get_cookie(url):
     screendate = "1366,768" #  屏幕宽度和高度我们可以设置成固定值．
     curlocation = url  # 当前请求的url
@@ -72,6 +76,20 @@ def get_cookie(url):
     url = url + "&security_verify_data=" + stringToHex(screendate)
     return url, cookie
 
+
+def get_haoduo_vf(vid):
+    """
+    好多视频web端请求参数加密,https://feeds.m.iqiyi.com/f.html?id=657370430570
+    :param vid: 用于构建加密参数，加密参数为请求链接去掉域名和vf参数
+    :return: 请求链接
+    """
+    with open(r'code_js/haoduo_change.js', 'r', encoding='utf-8') as f:
+        js = f.read()
+    ct = execjs.compile(js)
+    url_last = '/jp/dash?tvid={}&bid=500&abid=100&src=02027221010000000000&ut=0&ori=h5&ps=0&messageId={}&pt=0&lid=&cf=&ct=&locale=zh_cn&k_tag=1&dfp=a0108fb17ecbfc41bba16f15f25b1b3c1fa765aefd5562b965e96b0e60e1fbd4bd&k_ft1=17729624997888&k_uid={}&qd_v=2&tm={}&qdy=a&qds=0&callback=onSuccess'.format(vid, int(time.time()*1000), int(time.time()*1000), int(time.time()*1000))
+    return ct.call('get_vf', url_last)
+
+
 if __name__ == '__main__':
     # data = decrypt_baidu_index_response("rRP,Gi4XSkAvb1.42,108+95.6-37%", 'SRAXRPSb1bAPSbAAAPS1,irPSbAiGPSRbSAPS,A,APS,bbRPS,ArrPS,SrRPSSASSPSrRRSPSbRS1PSS,,XPSRiSRPSRR,GPSGbR,PSGGAbPSrRRbPSASbSPSSGiiPSS,,bPSrriSPSri1APSSrArPSSAGRPSbSirPSXRGRPSARriPS,bGS')
     # print(data)
@@ -79,16 +97,10 @@ if __name__ == '__main__':
     # print(get_sougou_weixin_detail_url('/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6EzDJysI4ql5MPrOUp16838dGRMI7NnPqERBhyS3pkIBJmUnGOsj5sAwvDqyjOWdzMmpGksUKiyE_Tvi0whLU5cCowwMU67tf8tcP0o0o_7IFlfgEmchfFxYpBdjoH0vIIdG2vChq_ChPHT-bnSSlhxnC98UDZYl-klHlKAxTKYxkhZQjSUnUsGRTpLLTNgHY&type=1&query=%E5%8C%97%E4%BA%AC'))
     # print(china_land('http://www.landchina.com/default.aspx?tabid=226'))
     # print(get_cookie('http://www.landchina.com/default.aspx?tabid=226'))
-    import execjs
-
-    with open(r'code_js/haoduo_change.js', 'r', encoding='utf-8') as f:
-        js = f.read()
-    ct = execjs.compile(js)
     url = 'https://feeds.m.iqiyi.com/f.html?id=11532260570'
     res_1 = requests.get(url, headers=get_headers())
     html = etree.HTML(res_1.text)
     vid = html.xpath('//div[@id="video"]/@data-tvi')[0]
-    url_last = '/jp/dash?tvid={}&bid=500&abid=100&src=02027221010000000000&ut=0&ori=h5&ps=0&messageId={}&pt=0&lid=&cf=&ct=&locale=zh_cn&k_tag=1&dfp=a0108fb17ecbfc41bba16f15f25b1b3c1fa765aefd5562b965e96b0e60e1fbd4bd&k_ft1=17729624997888&k_uid={}&qd_v=2&tm={}&qdy=a&qds=0&callback=onSuccess'.format(vid, int(time.time()*1000), int(time.time()*1000), int(time.time()*1000))
-    video_url = ct.call('get_vf', url_last)
+    video_url = get_haoduo_vf(vid)
     res_2 = requests.get(video_url, headers=get_headers())
     print(res_2.text)
