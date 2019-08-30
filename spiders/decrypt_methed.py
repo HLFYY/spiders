@@ -6,6 +6,14 @@ sys.path.append(envplat_dir + "spiders")
 from base_method import *
 from log_setting import logger
 
+
+def get_youdao_sign(word, ts, user_agent=''):
+    salt = str(ts)+str(random.randint(0,10))
+    bv = MD5(user_agent)
+    sign = MD5("fanyideskweb" + word + salt + "@6f#X3=cCuncYssPsuRUE")
+    return salt, bv, sign
+
+
 def decrypt_baidu_index_response(keys, encrypt_data):
     """百度指数返回结果解密"""
     w_data = {}
@@ -39,6 +47,7 @@ def str2token(str_data):
     return token.replace('0x', '')
 
 def china_land(url):
+    """中国土地市场网"""
     screen_data = "1333,800"
     cookie = ''
     if "security_verify_" not in url:
@@ -67,6 +76,19 @@ if __name__ == '__main__':
     # data = decrypt_baidu_index_response("rRP,Gi4XSkAvb1.42,108+95.6-37%", 'SRAXRPSb1bAPSbAAAPS1,irPSbAiGPSRbSAPS,A,APS,bbRPS,ArrPS,SrRPSSASSPSrRRSPSbRS1PSS,,XPSRiSRPSRR,GPSGbR,PSGGAbPSrRRbPSASbSPSSGiiPSS,,bPSrriSPSri1APSSrArPSSAGRPSbSirPSXRGRPSARriPS,bGS')
     # print(data)
     # print(get_sougou_weixin_detail_url('https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6EzDJysI4ql5MPrOUp16838dGRMI7NnPqqmqghgrZjZoAwla_S92HUwwvDqyjOWdzb_UcLpYkX0ABd5cGalMZ82hiRv6K94Zow4jG6WOtmaJceIcIwmExZxIIZrbOZGYWdida8Qgf2vh7OrhA4PNjrWMMdGfWP9xBOPhvugdGMUA52SESmjn9sm4OZCnxixtX&type=1&query=%E4%B8%8A%E6%B5%B7&k=68&h=d'))
-    print(get_sougou_weixin_detail_url('/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6EzDJysI4ql5MPrOUp16838dGRMI7NnPqERBhyS3pkIBJmUnGOsj5sAwvDqyjOWdzMmpGksUKiyE_Tvi0whLU5cCowwMU67tf8tcP0o0o_7IFlfgEmchfFxYpBdjoH0vIIdG2vChq_ChPHT-bnSSlhxnC98UDZYl-klHlKAxTKYxkhZQjSUnUsGRTpLLTNgHY&type=1&query=%E5%8C%97%E4%BA%AC'))
+    # print(get_sougou_weixin_detail_url('/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6EzDJysI4ql5MPrOUp16838dGRMI7NnPqERBhyS3pkIBJmUnGOsj5sAwvDqyjOWdzMmpGksUKiyE_Tvi0whLU5cCowwMU67tf8tcP0o0o_7IFlfgEmchfFxYpBdjoH0vIIdG2vChq_ChPHT-bnSSlhxnC98UDZYl-klHlKAxTKYxkhZQjSUnUsGRTpLLTNgHY&type=1&query=%E5%8C%97%E4%BA%AC'))
     # print(china_land('http://www.landchina.com/default.aspx?tabid=226'))
     # print(get_cookie('http://www.landchina.com/default.aspx?tabid=226'))
+    import execjs
+
+    with open(r'code_js/haoduo_change.js', 'r', encoding='utf-8') as f:
+        js = f.read()
+    ct = execjs.compile(js)
+    url = 'https://feeds.m.iqiyi.com/f.html?id=11532260570'
+    res_1 = requests.get(url, headers=get_headers())
+    html = etree.HTML(res_1.text)
+    vid = html.xpath('//div[@id="video"]/@data-tvi')[0]
+    url_last = '/jp/dash?tvid={}&bid=500&abid=100&src=02027221010000000000&ut=0&ori=h5&ps=0&messageId={}&pt=0&lid=&cf=&ct=&locale=zh_cn&k_tag=1&dfp=a0108fb17ecbfc41bba16f15f25b1b3c1fa765aefd5562b965e96b0e60e1fbd4bd&k_ft1=17729624997888&k_uid={}&qd_v=2&tm={}&qdy=a&qds=0&callback=onSuccess'.format(vid, int(time.time()*1000), int(time.time()*1000), int(time.time()*1000))
+    video_url = ct.call('get_vf', url_last)
+    res_2 = requests.get(video_url, headers=get_headers())
+    print(res_2.text)

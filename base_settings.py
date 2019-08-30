@@ -10,6 +10,7 @@ import random
 import time
 import os
 import platform
+import logging
 
 # 各类配置信息对应的redis_key
 SEND_NODE_KEY = 'send_node_user'  # {'account_sid': '', 'auth_token':'', 'to_phone': '', 'from_phone': '', }
@@ -40,6 +41,21 @@ REDIS_SPIDER = {
     'db': 2,
     'password': ''
 }
+# db=4, 存储布隆过滤器
+REDIS_FILTER = {
+    'host': '127.0.0.1',
+    'port': 6379,
+    'db': 4,
+    'password': ''
+}
+# 代理
+REDIS_PROXY = {
+    'host': '127.0.0.1',
+    'port': 6379,
+    'db': 5,
+    'password': ''
+}
+
 
 if 'MacBook' in socket.gethostname():
     ONLINE = False
