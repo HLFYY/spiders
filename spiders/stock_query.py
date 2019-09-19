@@ -15,8 +15,9 @@ url_3 = 'https://finance.sina.com.cn/realstock/company/{}/nc.shtml'
 # names = ['立讯精密', '穗恒运A', '依顿电子', '京能电力', '江南水务', '氯碱化工', '中国国贸', '平高电气', '皇马科技', '新天然气', '陕西黑猫', '民和股份', '基蛋生物', '海翔药业', '温氏股份']
 # names = ['三安光电', '宁夏建材', '多氟多', '华银电力', '平煤股份', '天邦股份', '正邦科技', '分众传媒', '浙商证券', '中材国际', '祥和实业', '皖天然气', '惠发食品', '中材科技', '九牧王', '贵研铂业', '国药股份', '珠江啤酒', '天士力', '北辰实业', '中国巨石', '金牌厨柜', '中光学', '康恩贝', '中海油服', '诚意药业', '科大讯飞']
 # names = ['旺能环境', '仁和药业', '万润股份', '老板电器', '石基信息', '恒生电子', '洋河股份', '浙江美大', '立讯精密', '歌尔股份', '巨化股份', '万科A', '圣邦股份', '信维通信', '中国人寿']
-names = ['万向德农', '双汇发展', '旺能环境', '仁和药业', '老板电器', '洋河股份', '立讯精密', '歌尔股份']
+# names = ['万向德农', '双汇发展', '旺能环境', '仁和药业', '老板电器', '洋河股份', '立讯精密', '歌尔股份']
 # names = ['中信证券', '中国人寿', '东北证券', '华能水电', '华远地产', '金', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+names = ['西安饮食', '三角防务', '西安旅游', '七一二', '生意宝']
 while True:
     print('--开始, time:{}'.format(time.strftime("%Y-%m-%d %H:%M:%S")))
     data_list = []
@@ -30,7 +31,7 @@ while True:
             continue
         res_2 = requests.get(url_2.format(code), headers=get_headers(), timeout=10)
         data = re.findall(r'"(.*?)";', res_2.text, re.S)[0].split(',')
-        # res_3 = requests.get(url_3.format(code), headers=get_headers(), timeout=10)
+        # res_3 = requests.get(url_3.format(code), headers=get_headers(), timeout=10, verify=False)
         # price_5 = re.findall(r'price_5_ago = (\d+.?\d*)', res_3.text, re.S)[0]
         # price_10 = re.findall(r'price_10_ago = (\d+.?\d*)', res_3.text, re.S)[0]
         # price_20 = re.findall(r'price_20_ago = (\d+.?\d*)', res_3.text, re.S)[0]
@@ -68,8 +69,8 @@ while True:
         )
         data_list.append(item)
         up_percent= eval(re.findall(r'-?\d+.?\d*', item['涨幅'], re.S)[0])
-        if up_percent> 2.5 or up_percent < -2.5:
-            print('-'*10, name, up_percent, '-'*10)
+        # if up_percent> 2.5 or up_percent < -2.5:
+        print('-'*10, name, up_percent, item['股价'], '-'*10)
     # df = pd.DataFrame(data_list, dtype='str')
     # df.to_excel('/Users/houjie/Desktop/股票_{}_{}.xls'.format(names[1], item['时间'][:10]), index=0, encoding='gbk')
-    time.sleep(60)
+    time.sleep(30)

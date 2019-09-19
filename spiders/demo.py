@@ -1,6 +1,6 @@
 from urllib import parse
 import js2py
-from .decrypt_methed import *
+from decrypt_methed import *
 import js2py
 from urllib.parse import quote
 import execjs
@@ -165,54 +165,33 @@ def get_sign(str_data):
 #             }
 #             return r.endian([c, f, l, d])
 
+def jisuan(sell, num, buy, cost):
+    money = (sell - buy) * num - cost
+    money_per = money / (buy * num)
+    return money, money_per
+
 
 if __name__ == '__main__':
-    remove_error()
+    # url = 'https://mi.gdt.qq.com/gdt_mview.fcg?actual_width=-1&fc=1&datatype=2&actual_height=-2&count=1&adposcount=1&r=0.03468060829692299&template_count=1&ext={"req":{"m1":"855cf0be4f83bd13761ad54ffc7c65f7","m2":"e326b0034ca4ef8cb72aea0fe2b6a8ee","m3":"cb081fa6c1d0d7fdb05396d0c2d4d81b","muidtype":1,"muid":"855cf0be4f83bd13761ad54ffc7c65f7","m9":"jpY655ysTSoO5EUOlVRzL2alW3TXj24daPuCTCfVHZWd4WbdBZrKuwx0y3MYawvTUIYfopGNchSj-Eb34ntFPAE9-j0lgiOTihPE5gmEoSX3S67xDCva9uTM49aNpK4n","placement_type":9,"render_type":3,"conn":1,"carrier":0,"loc_src":5,"support_app_landing_page":1,"c_os":"android","c_osver":"5.1","c_pkgname":"com.songheng.eastnews","c_device":"OPPO R9m","c_devicetype":1,"c_mf":"OPPO","c_ori":0,"c_w":1080,"c_h":1920,"sdkver":"4.63.950","tmpallpt":true,"postype":9,"deep_link_version":1,"c_sdfree":34946129920,"c_market":"7","c_hl":"zh","native_jsver":"1.1.0","scs":"0001dafba243","ast":{"br":"OPPO","de":"R9","fp":"OPPO\/R9m\/R9:5.1\/LMY47I\/1515760704:user\/release-keys","hw":"mt6755","pr":"R9m","sr":"G6BELRFI99999999","is_d":false},"support_video":true,"from_js":0,"sdk_st":"1","wx_api_ver":620954624,"opensdk_ver":620823552,"support_c2s":1,"v":{"ap":0,"rt":1}}}&posid=6020373662477875'
     # headers = {
-    #     'User-Agent': "official.f1.3.3.1.3b0d4e4.20190723161254",
-    #     "host": "readfree.zhulang.com",
-    #     "common": "8QbovhpKVfI2KLGcILfqtUYvUrlEi1B7/5Dc7HcVHGuO/8Ww",
-    #     "accept": "application/json",
-    #     "channel": "f_oppo",
-    #     "X-Version": "3b0d4e4",
-    #     "version-code": "190717",
-    #     "umd": '2e',
-    #     "X-Token": "Opcyfss+uZm+xQpJRPiJHKWyptHh3K53jmUstXoONiqnB+Y+V8n7FqbWrohjNZ8tkGBmmRb5KyGMfzkzHlAXEmhvxnOJq7fp8z7eOM3fss+g09CERJscW8Y7hcH/TkWwAgapjzXlFrPEWTwH",
-    #     "package": "com.wifi.reader.free",
-    #     "X-Validate": "7221b587ca876508a2c031e50d0555ad"
+    #     "User-Agent": "GDTADNetClient-[Dalvik/2.1.0 (Linux; U; Android 5.1; OPPO R9m Build/LMY47I)]",
+    #     "Accept-Encoding": "gzip",
+    #     "Host": "mi.gdt.qq.com",
+    #     "Connection": "Keep-Alive",
+    #     "Cookie": "snsuid=73052553150464; qz_gdt=5cqw6xiwaaajhfthl4nq; qz_gdtinner=5cqw6xiwaaajhfthl4nq; gdt_uid=0_1558109546",
+    #     "Cookie2": "$Version=1",
     # }
-    #
-    #
-    # def get_book_data(book_text):
-    #     # book_text = "O0YNA1zq/PFQ+0Yl3ddmM82sJqIdrbthcMTe0GenXMEfqdXLzeZd2Sb+4tJzRW7LbE/ocvz66CrxpGNS"
-    #     url = "http://test-liaowang-app.qttcs3.cn/netty/sendToAll"
-    #     payload = "{\"param\": \" %s \",\"flag\": 1,\"TAG\": \"3\"}" % book_text
-    #     headers = {
-    #         'Content-Type': "application/json",
-    #         'User-Agent': "PostmanRuntime/7.15.2",
-    #         'Accept': "*/*",
-    #         'Cache-Control': "no-cache",
-    #         'Host': "test-liaowang-app.qttcs3.cn",
-    #         'Accept-Encoding': "gzip, deflate",
-    #         'Content-Length': "13071",
-    #         'Connection': "keep-alive",
-    #         'cache-control': "no-cache"
-    #     }
-    #
-    #     response = requests.request("POST", url, data=payload, headers=headers)
-    #     print(response.status_code)
-    #     return response.text
-    #
-    #
-    # list_url = "http://readfree.zhulang.com/v1/cate"
-    #
-    # url = "http://readfree.zhulang.com/v1/book?q=&offset=200&limit=100&cate1=6&cate2=-1&cate3=0&finish=-1&provider=-1&author=-1&word_count=-1&vip=-1&sort=&update=-1"
-    #
-    # req = requests.get(url, headers=headers)
-    # print(req.text)  # 获取加密后的数据
-    # text = get_book_data(req.text)  # 调用小刘接口解密数据
-    # if text == "":
-    #     pass
-    # else:
-    #     print(text)
-
+    # response = requests.get(url, headers=headers)
+    # print(response.text)
+    dd = [
+        (25.45, 700, 25.92, 23.18),
+        (25.44, 600, 25.92, 17.71),
+        (29.25, 400, 29.154, 13.34),
+        (2.22, 8000, 2.35, 20.61),
+        (7.95, 1800, 8.401, 16.21),
+        (19.35, 1000, 18.503, 22.45),
+        (11.5, 1600, 11.352, 21.35),
+        (6.88, 2200, 6.611, 17.25),
+    ]
+    for d in dd:
+        print(jisuan(*d))

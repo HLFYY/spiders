@@ -48,14 +48,17 @@ def str2token(str_data):
         token += str(hex(ord(val)))
     return token.replace('0x', '')
 
-
-def china_land(url):
-    """中国土地市场网"""
-    screen_data = "1333,800"
+def china_land(url, text):
+    """
+    中国土地市场网
+    :param url: 链接
+    :param text: 验证码
+    :return:
+    """
     cookie = ''
     if "security_verify_" not in url:
         cookie = 'srcurl=' + str2token(url) + ';path=/;'
-    url = "http://www.landchina.com/default.aspx?tabid=226&security_verify_data=" + str2token(screen_data)
+    url = "http://www.landchina.com/default.aspx?tabid=226&security_verify_img=" + str2token(text)
     return url, cookie
 
 def stringToHex(s):

@@ -2,7 +2,7 @@ import traceback
 import time
 from tool.process_tasks import Tasks
 from tool.warpper import warning
-from settings.conf import *
+from settings.conf import PROCESS_NUMS
 import os
 import random
 from settings.plats_conf import PLATS_INFO
