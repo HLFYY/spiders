@@ -6,6 +6,7 @@ sys.path.append(envplat_dir + "spiders")
 # from base_settings import *
 from base_method import *
 from log_setting import logger
+from login_extra.tool.YDMHTTPDemo3x import YDMHttp
 
 
 def get_youdao_sign(word, ts, user_agent=''):

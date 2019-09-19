@@ -4,7 +4,7 @@ import http.client, mimetypes, urllib, json, time, requests
 ######################################################################
 import redis
 
-from settings.conf import REDIS_CONFIG_URL, YUN_DAMA_KEY
+from ..settings.conf import REDIS_CONFIG, YUN_DAMA_KEY
 
 
 class YDMHttp:
@@ -15,7 +15,7 @@ class YDMHttp:
     appkey = ''
 
     def __init__(self):
-        self.r_task = redis.Redis(**REDIS_CONFIG_URL)
+        self.r_task = redis.Redis(**REDIS_CONFIG)
         val = self.r_task.get(YUN_DAMA_KEY)
         data_dict = json.loads(val.decode('utf8'))
         # 用户名

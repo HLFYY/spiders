@@ -30,16 +30,15 @@ def shuqi_category():
                         'bookId': data['bookid'],
                         'user_id': '1504639959',
                         'timestamp': str(int(time.time()*1000)),
-                        'sign': '850eb5c203072ffd809f2727f72305ae',
                         'channel': '1077',
                         'version': '10.9.2.90',
                         'ver': '190904',
                         'linkMiguServer': '0'
                     }
-                    res_detail = requests.post(detail_url, data=detail_form, headers=get_headers(), verify=False)
+                    res_detail = requests.post(detail_url, data=get_sign(detail_form), headers=get_headers(), verify=False)
                     detail_data = get_data_list(res_detail, 'data')
-                    print(detail_data)
-                    # print(detail_data['bookName'], detail_data['lastChapter']['chapterName'])
+                    # print(detail_data)
+                    print(detail_data['bookName'], detail_data['lastChapter']['chapterName'])
                     tk = base64.b64encode((str(data['bookid']) + '417ac59e9f').encode()).decode()
                     cp_url = 'http://bookapi.shuqiapi.com/?bamp=sqbq&session=&userId=1504639959&bid={}&tk={}&sn=1568601841745589&imei=862021032478011&_={}'.format(data['bookid'], tk, int(time.time()*1000))
                     res_cp = requests.get(cp_url, headers=get_headers())
@@ -61,24 +60,27 @@ def shuqi_rank():
                     break
                 time.sleep(1)
 
+def get_sign(dict_):
+    sign = MD5(str(dict_['bookId'])+str(dict_['timestamp'])+str(dict_['user_id'])+'37e81a9d8f02596e1b895d07c171d5c9')
+    dict_['sign'] = sign
+    return dict_
 
 if __name__ == '__main__':
-    # shuqi_category()
+    shuqi_category()
     # shuqi_rank()
-    detail_url = 'http://content.shuqireader.com/andapi/book/info/?_={}'.format(int(time.time() * 1000))
-    detail_form = {
-        'bookId': '7740251',
-        'user_id': '1604639959',
-        'timestamp': '1568720120933',
-        'sign': '187927ad37965c8149a7ac779b883ce9',
-        'channel': '1177',
-        'version': '20.9.2.90',
-        'ver': '190904',
-        'linkMiguServer': '0'
-    }
-    res_detail = requests.post(detail_url, data=detail_form, headers=get_headers(), verify=False)
-    detail_data = get_data_list(res_detail, 'data')
-    print(res_detail.text)
+    # detail_url = 'http://content.shuqireader.com/andapi/book/info/?_={}'.format(int(time.time() * 1000))
+    # detail_form = {
+    #     'bookId': '7740251',
+    #     'user_id': '1604639959',
+    #     'timestamp': '1568720120933',
+    #     'channel': '1177',
+    #     'version': '20.9.2.90',
+    #     'ver': '190904',
+    #     'linkMiguServer': '0'
+    # }
+    # res_detail = requests.post(detail_url, data=get_sign(detail_form), headers=get_headers(), verify=False)
+    # detail_data = get_data_list(res_detail, 'data')
+    # print(res_detail.text)
     # dd = {
     #     'bookId': '7740251',
     #     'user_id': '1504639959',
